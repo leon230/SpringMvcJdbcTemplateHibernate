@@ -59,7 +59,7 @@ public class TicketDAOHibernateImpl implements TicketDAOHibernate {
 //        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Ticket.class);
 //        criteria.addOrder(Order.desc("dueDate"));
 
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings("unchecked")a
         List<Ticket> listTicket = (List<Ticket>) query.list();
 
         return listTicket;
