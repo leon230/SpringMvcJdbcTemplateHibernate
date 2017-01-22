@@ -23,7 +23,15 @@
 		<form:form action="saveTicket" method="post" modelAttribute="TicketForm">
 		<form:errors path="*" class="errorblock" element="div"/>
 
-			<form:hidden path="id"/>
+			<spring:bind path="id">
+            			<div class="form-group">
+            				<label class="col-sm-2 control-label">Ticket title</label>
+            				<div class="col-sm-10">
+            					<form:input path="id" type="text" class="form-control " id="id" placeholder="Ticket id" />
+            					<form:errors path="id" class="control-label" />
+            				</div>
+            			</div>
+            			</spring:bind>
 
 			<spring:bind path="number">
 			<div class="form-group">

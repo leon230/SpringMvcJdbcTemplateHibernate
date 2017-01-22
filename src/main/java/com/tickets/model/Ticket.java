@@ -1,10 +1,14 @@
 package com.tickets.model;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Ticket {
+@Entity
+@Table(name = "TICKETS")
+public class Ticket implements Serializable{
     private int id;
     private String number;
     private String title;
@@ -24,6 +28,9 @@ public class Ticket {
 
     public Ticket() {
         initModelList();
+    }
+    public Ticket(int id){
+        this.id = id;
     }
 
     public Ticket(String number, String title, String owner, String cluster, Date openDate, Date closeDate, String description,
@@ -79,6 +86,9 @@ public class Ticket {
     public static List<String> getStatusesList(){return statuses;}
     public static List<String> getPrioritiesList(){return priorities;}
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     public int getId() {
         return id;
     }
@@ -87,6 +97,7 @@ public class Ticket {
         this.id = id;
     }
 
+    @Column(name = "TICKET_NO")
     public String getNumber() {
         return number;
     }
@@ -95,6 +106,7 @@ public class Ticket {
         this.number = number;
     }
 
+    @Column(name = "TICKET_TITLE")
     public String getTitle() {
         return title;
     }
@@ -103,6 +115,7 @@ public class Ticket {
         this.title = title;
     }
 
+    @Column(name = "TICKET_OWNER")
     public String getOwner() {
         return owner;
     }
@@ -111,6 +124,7 @@ public class Ticket {
         this.owner = owner;
     }
 
+    @Column(name = "CLUSTER")
     public String getCluster() {
         return cluster;
     }
@@ -121,18 +135,22 @@ public class Ticket {
 
     public void setOpenDate(Date date){this.openDate = date;}
 
+    @Column(name = "OPEN_DATE")
     public Date getOpenDate(){return openDate;}
 
     public void setCloseDate(Date date){this.closeDate = date;}
 
+    @Column(name = "CLOSE_DATE")
     public Date getCloseDate(){return closeDate;}
 
+    @Column(name = "DESCRIPTION")
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String val) {this.description = val;}
 
+    @Column(name = "REPORTED_BY")
     public String getReportedBy() {
         return reportedBy;
     }
@@ -141,6 +159,7 @@ public class Ticket {
         this.reportedBy = val;
     }
 
+    @Column(name = "PRIORITY")
     public String getPriority() {
         return priority;
     }
@@ -149,6 +168,7 @@ public class Ticket {
         this.priority = val;
     }
 
+    @Column(name = "STATUS")
     public String getTstatus() {
         return tstatus;
     }
@@ -157,6 +177,7 @@ public class Ticket {
         this.tstatus = val;
     }
 
+    @Column(name = "ACC_OWNER")
     public String getAccOwner() {
         return accOwner;
     }
@@ -165,6 +186,7 @@ public class Ticket {
         this.accOwner = val;
     }
 
+    @Column(name = "REQUEST_DATE")
     public Date getRequestDate() {
         return requestDate;
     }
@@ -173,6 +195,7 @@ public class Ticket {
         this.requestDate = requestDate;
     }
 
+    @Column(name = "DUE_DATE")
     public Date getDueDate() {
         return dueDate;
     }

@@ -1,17 +1,7 @@
 package com.tickets.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import com.tickets.dao.ChartsDAO;
-import com.tickets.dao.TicketDAO;
+import com.tickets.dao.TicketDAOHibernate;
 import com.tickets.model.ChartKeyValue;
 import com.tickets.model.Filter;
 import com.tickets.model.Ticket;
@@ -25,15 +15,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @Import(com.tickets.validator.TicketFilterValidator.class)
 public class TicketController {
-
 	@Autowired
-	private TicketDAO ticketDAO;
+	private TicketDAOHibernate ticketDAOHibernate;
 	@Autowired
 	private ChartsDAO chartsDAO;
 	@Autowired
@@ -55,7 +60,8 @@ public class TicketController {
 	}
 	@InitBinder
 		public void homeBinder(){
-		listTicket = ticketDAO.list(ticketFilter.getCondition());
+		listTicket = ticketDAOHibernate.list(ticketFilter.getCondition());
+//		listTicket = ticketDAO.list(ticketFilter.getCondition());
 	}
 
 /**
@@ -109,7 +115,8 @@ public class TicketController {
 			return model;
         }
         else {
-				ticketDAO.saveOrUpdate(ticket);
+//				ticketDAO.saveOrUpdate(ticket);
+			ticketDAOHibernate.saveOrUpdate(ticket);
 			return new ModelAndView("redirect:/");
         }
 
@@ -118,14 +125,15 @@ public class TicketController {
 	@RequestMapping(value = "**/deleteTicket", method = RequestMethod.GET)
 	public ModelAndView deleteTicket(HttpServletRequest request) {
 		int ticketId = Integer.parseInt(request.getParameter("id"));
-		ticketDAO.delete(ticketId);
+		ticketDAOHibernate.delete(ticketId);
 		return new ModelAndView("redirect:/");
 	}
 	
 	@RequestMapping(value = "**/editTicket", method = RequestMethod.GET)
 	public ModelAndView editTicket(HttpServletRequest request) {
 		int ticketId = Integer.parseInt(request.getParameter("id"));
-		Ticket ticket = ticketDAO.get(ticketId);
+//		Ticket ticket = ticketDAO.get(ticketId);
+		Ticket ticket = ticketDAOHibernate.get(ticketId);
 		ModelAndView model = new ModelAndView("TicketForm");
 		model.addObject("clusters", Ticket.getClustersList());
 		model.addObject("statuses", Ticket.getStatusesList());

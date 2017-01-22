@@ -34,7 +34,7 @@ public class TicketDAOImpl implements TicketDAO {
 					ticket.getDescription(), ticket.getReportedBy(), ticket.getPriority(), ticket.getTstatus(),
 					ticket.getAccOwner(), ticket.getRequestDate(), ticket.getDueDate(), ticket.getId());
 		} else {
-			// insert
+//			 insert
 			String sql = "INSERT INTO tickets (TICKET_NO,TICKET_TITLE,TICKET_OWNER,CLUSTER, OPEN_DATE," +
 					"CLOSE_DATE,DESCRIPTION,REPORTED_BY,PRIORITY,STATUS,ACC_OWNER,REQUEST_DATE,DUE_DATE)"
 						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
