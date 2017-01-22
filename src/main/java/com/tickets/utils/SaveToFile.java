@@ -18,7 +18,6 @@ public class SaveToFile {
         this.fileTo = fileTo;
     }
 
-
     @Autowired
     public void saveFile()
     {
