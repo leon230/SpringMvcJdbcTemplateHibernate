@@ -64,12 +64,13 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		return dataSource;
 	}
 	
-	@Bean
-	@Scope(value = WebApplicationContext.SCOPE_SESSION,
-			proxyMode=ScopedProxyMode.TARGET_CLASS)
-	public TicketDAO getTicketDAO() {
-		return new TicketDAOImpl(getDataSource());
-	}
+//	@Bean
+//	@Scope(value = WebApplicationContext.SCOPE_SESSION,
+//			proxyMode=ScopedProxyMode.TARGET_CLASS)
+//	public TicketDAO getTicketDAO() {
+//		return new TicketDAOImpl(getDataSource());
+//	}
+
 	@Bean
 	public TicketDAOHibernate getTicketDAOHibernate(){
 

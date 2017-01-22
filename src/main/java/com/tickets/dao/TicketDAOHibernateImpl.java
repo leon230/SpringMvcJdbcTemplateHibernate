@@ -54,8 +54,11 @@ public class TicketDAOHibernateImpl implements TicketDAOHibernate {
     @Override
     @Transactional
     public List<Ticket> list(String conditions) {
-        String sql = "from Ticket where " + conditions;
+        String sql = "from Ticket where " + conditions + " order by dueDate desc";
         Query query = sessionFactory.getCurrentSession().createQuery(sql);
+//        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Ticket.class);
+//        criteria.addOrder(Order.desc("dueDate"));
+
 
         @SuppressWarnings("unchecked")
         List<Ticket> listTicket = (List<Ticket>) query.list();

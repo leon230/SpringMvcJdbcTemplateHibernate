@@ -1,10 +1,10 @@
-import com.tickets.dao.TicketDAOImpl;
+import com.tickets.dao.TicketDAOHibernateImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertEquals;
 
 
 /**
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class MockitoTest {
 
     @Mock
-    TicketDAOImpl ticketDAO;
+    TicketDAOHibernateImpl ticketDAOHibernate;
 
     @Before
     public void setUp(){
@@ -22,7 +22,7 @@ public class MockitoTest {
 
     @Test
     public void test1(){
-        assertNotNull(ticketDAO);
+        assertNotNull(ticketDAOHibernate);
     }
 
 

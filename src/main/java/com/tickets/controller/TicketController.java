@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -74,7 +73,6 @@ public class TicketController {
 
 	@RequestMapping(value="/home", method = RequestMethod.GET)
 	public ModelAndView listTicket(ModelAndView model) throws IOException{
-
 		model.addObject("currentDate",calendar.getTime());
 		model.addObject("filter",ticketFilter);
 		model.addObject("listTicket", listTicket);
@@ -89,17 +87,14 @@ public class TicketController {
  */
 	@RequestMapping(value = "**/newTicket", method = RequestMethod.GET)
 	public ModelAndView newTicket(ModelAndView model) {
-		Ticket newTicket = new Ticket();
-		SimpleDateFormat printFormat = new SimpleDateFormat("yyyyMMdd_kkmmss");
-		Date date = new Date();
-		newTicket.setNumber(System.getProperty("user.name") + "_" + printFormat.format(date));
-		newTicket.setReportedBy(System.getProperty("user.name"));
-		newTicket.setTstatus("In queue");
+		Ticket newTicket = new Ticket(System.getProperty("user.name"),System.getProperty("user.name"),"In queue");
+
 		model.addObject("TicketForm", newTicket);
 		model.setViewName("TicketForm");
 		model.addObject("clusters", Ticket.getClustersList());
 		model.addObject("statuses", Ticket.getStatusesList());
 		model.addObject("priorities", Ticket.getPrioritiesList());
+
 		return model;
 	}
 
@@ -112,6 +107,7 @@ public class TicketController {
 			model.addObject("clusters", Ticket.getClustersList());
 			model.addObject("statuses", Ticket.getStatusesList());
 			model.addObject("priorities", Ticket.getPrioritiesList());
+
 			return model;
         }
         else {
@@ -178,6 +174,7 @@ public class TicketController {
 		model.addObject("clusters", clusters);
 		model.addObject("priorities", priorities);
 		model.addObject("statuses", statuses);
+
 		return model;
 	}
 
@@ -201,6 +198,7 @@ public class TicketController {
 			model.addObject("priorities", priorities);
 			model.addObject("statuses", statuses);
 			filter.setCondition();
+
 			return model;
 		}
 		else {

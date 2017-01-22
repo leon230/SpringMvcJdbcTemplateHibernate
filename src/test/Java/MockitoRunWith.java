@@ -1,4 +1,4 @@
-import com.tickets.dao.TicketDAOImpl;
+import com.tickets.dao.TicketDAOHibernateImpl;
 import com.tickets.dao.UserDAO;
 import com.tickets.model.Ticket;
 import com.tickets.model.User;
@@ -6,9 +6,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by lukasz.homik on 2016-12-20.
@@ -16,7 +18,7 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class MockitoRunWith {
     @Mock
-    TicketDAOImpl ticketDAO;
+    TicketDAOHibernateImpl ticketDAOHibernate;
     @Mock
     UserDAO userDAO;
     @Mock
@@ -25,7 +27,7 @@ public class MockitoRunWith {
 
     @Test
     public void test1(){
-        assertNotNull(ticketDAO);
+        assertNotNull(ticketDAOHibernate);
     }
 
     @Test
