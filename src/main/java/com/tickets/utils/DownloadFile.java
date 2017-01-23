@@ -18,7 +18,9 @@ public class DownloadFile {
         int BUFFER_SIZE = 4096;
 //		ServletContext context = request.getServletContext();
         ServletContext context = request.getSession().getServletContext();
-        String fullPath = "/Export.csv";
+        String appPath = context.getRealPath("");
+        String filePath = "/Export.csv";
+        String fullPath = appPath + filePath;
 
         SaveToFile sv = new SaveToFile(listTicket,fullPath);
         sv.saveFile();

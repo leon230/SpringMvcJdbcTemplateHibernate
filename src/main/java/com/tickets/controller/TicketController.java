@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -182,18 +181,18 @@ public class TicketController {
 		filterValidator.validate(filter, result);
 
 		if (result.hasErrors()){
-			List<String> clusters = new ArrayList<String>();
-			List<String> priorities = new ArrayList<String>();
-			List<String> statuses = new ArrayList<String>();
-			clusters.addAll(Ticket.getClustersList());
-			priorities.addAll(Ticket.getPrioritiesList());
-			statuses.addAll(Ticket.getStatusesList());
+//			List<String> clusters = new ArrayList<String>();
+//			List<String> priorities = new ArrayList<String>();
+//			List<String> statuses = new ArrayList<String>();
+//			clusters.addAll(Ticket.getClustersList());
+//			priorities.addAll(Ticket.getPrioritiesList());
+//			statuses.addAll(Ticket.getStatusesList());
 
 			model.setViewName("filter/TicketFilter");
 			model.addObject("filter", filter);
-			model.addObject("clusters", clusters);
-			model.addObject("priorities", priorities);
-			model.addObject("statuses", statuses);
+			model.addObject("clusters", Ticket.getClustersList());
+			model.addObject("priorities", Ticket.getPrioritiesList());
+			model.addObject("statuses", Ticket.getStatusesList());
 			filter.setCondition();
 
 			return model;
